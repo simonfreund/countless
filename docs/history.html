@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Freund – countless, history</title>
+    <meta name="description"
+        content="is an online installation by conceptual artist Simon Freund. The amount displayed is a reflection of the artist's financial situation at any given time.">
+    <meta property="og:title" content="Simon Freund – countless, history">
+    <meta property="og:description"
+        content="is an online installation by conceptual artist Simon Freund. The amount displayed is a reflection of the artist's financial situation at any given time.">
+    <meta property="og:image" content="https://countless.info/countless.jpeg">
+    <meta property="og:url" content="https://countless.info/history">
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="balance-wrapper" class="flex column">
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBlzzLBIbL8HRhSWFn0JccYPlBPi52pHz0",
+            authDomain: "countless-5a92b.firebaseapp.com",
+            databaseURL: "https://countless-5a92b.firebaseio.com",
+            projectId: "countless-5a92b",
+            storageBucket: "countless-5a92b.appspot.com",
+            messagingSenderId: "144616170281",
+            appId: "1:144616170281:web:b3fbb3b61a2b191cc94d38"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const archiveBalances = db.collection('archive').orderBy('date', 'desc')
+        archiveBalances
+            .get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                    console.log('No matching documents.')
+                    return false
+                }
+                snapshot.forEach(doc => {
+                    const wrapperElement = document.getElementById('balance-wrapper')
+                    const secondWrapper = document.createElement('div')
+                    secondWrapper.className = 'flex'
+                    wrapperElement.appendChild(secondWrapper)
+
+                    const unix_timestamp = doc.data().date.seconds
+                    const date = new Date(unix_timestamp * 1000).toISOString()
+                    const day = date.substr(8, 2)
+                    const month = date.substr(5, 2)
+                    const year = date.substr(0, 4)
+                    const actualDate = `${day}.${month}.${year}`
+
+                    const newDivDate = document.createElement('div')
+                    secondWrapper.appendChild(newDivDate)
+                    const newContentDate = document.createTextNode(actualDate)
+                    newDivDate.appendChild(newContentDate)
+                    newDivDate.className = 'date'
+
+                    const stripe = doc.data().stripe
+                    const comdirect = doc.data().comdirect
+                    const debt = doc.data().debt
+                    const sum = stripe + comdirect - debt
+
+                    const modifiedNumber = sum.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
+
+                    const newDivSum = document.createElement('div')
+                    secondWrapper.appendChild(newDivSum)
+                    const newContentSum = document.createTextNode(modifiedNumber)
+                    newDivSum.appendChild(newContentSum)
+
+                    if (sum > 0) {
+                        newDivSum.className = 'positive'
+                    }
+                    else {
+                        newDivSum.className = 'negative'
+                    }
+                })
+                return true
+            })
+            .catch(err => {
+                console.error('error', err);
+                process.exit()
+            })
+    </script>
+</body>
+
+</html>

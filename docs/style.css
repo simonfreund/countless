@@ -1,0 +1,75 @@
+html,
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+@font-face {
+  font-family: "tt0596m_";
+  src: url("./fonts/tt0596m_.ttf") format("truetype");
+}
+
+body {
+  font-family: "tt0596m_";
+  letter-spacing: 0px;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  padding: 20px;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+}
+
+.centered {
+  width: 80%;
+  max-width: 800px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  vertical-align: middle;
+}
+
+a,
+.negative {
+  color: red;
+  text-decoration: none;
+}
+
+a.positive,
+.positive {
+  color: blue;
+}
+
+a:hover {
+  color: #fff;
+}
+
+::selection {
+  color: white;
+  background: white;
+}
+
+::-moz-selection {
+  color: white;
+  background: white;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.date {
+  width: 120px;
+}

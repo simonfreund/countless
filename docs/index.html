@@ -44,8 +44,8 @@
             document.getElementById("info").classList.add("positive");
         }
         const modifiedNumber = data.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
-        // innerHTML to innerText
-        document.getElementById("saldo").innerHTML = modifiedNumber
+
+        document.getElementById("saldo").innerText = modifiedNumber
 
     </script>
 </body>

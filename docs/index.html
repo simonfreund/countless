@@ -14,6 +14,7 @@
     <meta property="og:url" content="https://countless.info/">
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -22,32 +23,6 @@
             <span id="saldo">...</span> EUR
         </a>
     </div>
-
-    <script>
-        const list = []
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("demo").innerHTML = this.responseText;
-                var obj = this.responseText;
-                var obj1 = JSON.parse(obj);
-                a0 = obj1.a0;
-            }
-        };
-        xhttp.open("GET", "../data/data.json", true);
-        xhttp.send();
-
-        const sum = list['comdirect'] + list['stripe'] - list['debt']
-        return sum
-
-        if (data >= 0) {
-            document.getElementById("info").classList.add("positive");
-        }
-        const modifiedNumber = data.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
-
-        document.getElementById("saldo").innerText = modifiedNumber
-
-    </script>
 </body>
 
 </html>

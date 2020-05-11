@@ -18,7 +18,7 @@ async function addBalances() {
     try {
         let bankBalance = await getBalances('https://raw.githubusercontent.com/simonfreund/countless/master/docs/bank.json')
         let stripeBalance = await getBalances('https://raw.githubusercontent.com/simonfreund/countless/master/docs/stripe.json')
-        let debtBalance = await getBalances('https://raw.githubusercontent.com/simonfreund/countless/master/docs/stripe.json')
+        let debtBalance = await getBalances('https://raw.githubusercontent.com/simonfreund/countless/master/docs/debt.json')
         await displayCurrentBalance(bankBalance, stripeBalance, debtBalance)
     } catch (err) {
         console.log(err)

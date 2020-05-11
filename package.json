@@ -1,0 +1,26 @@
+{
+  "name": "countless",
+  "version": "1.0.0",
+  "description": "[Countless](https://countless.info/) is an online installation by conceptual artist [Simon Freund](https://simonfreund.com/). The amount displayed is a reflection of the artist's financial situation at any given time.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonfreund/countless.git"
+  },
+  "author": "Marcello Curto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonfreund/countless/issues"
+  },
+  "homepage": "https://github.com/simonfreund/countless#readme",
+  "dependencies": {
+    "puppeteer": "^3.0.4",
+    "stripe": "^8.50.0"
+  }
+}

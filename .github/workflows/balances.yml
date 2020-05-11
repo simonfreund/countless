@@ -1,0 +1,27 @@
+name: Get all balances
+
+on: [push]
+
+jobs:
+  job1:
+    name: Get balances
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
+    - name: Install dependencies
+      run: npm ci
+    - run: node index.js
+      env:
+          API_KEY: ${{ secrets.API_KEY }}
+          BANK_1: ${{ secrets.BANK_LOGIN_1 }}
+          BANK_2: ${{ secrets.BANK_LOGIN_2 }}
+    - name: Git add
+      run: git add docs/bank.json docs/stripe.json
+    - name: Git commit
+      run: git commit -m "update 💰"
+    - name: Git push
+      run: git push

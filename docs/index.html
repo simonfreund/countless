@@ -22,46 +22,31 @@
             <span id="saldo">...</span> EUR
         </a>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
 
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBlzzLBIbL8HRhSWFn0JccYPlBPi52pHz0",
-            authDomain: "countless-5a92b.firebaseapp.com",
-            databaseURL: "https://countless-5a92b.firebaseio.com",
-            projectId: "countless-5a92b",
-            storageBucket: "countless-5a92b.appspot.com",
-            messagingSenderId: "144616170281",
-            appId: "1:144616170281:web:b3fbb3b61a2b191cc94d38"
+        const list = []
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+                var obj = this.responseText;
+                var obj1 = JSON.parse(obj);
+                a0 = obj1.a0;
+            }
         };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const allBalances = db.collection('balances')
-        allBalances.get()
-            .then(snapshot => {
-                if (snapshot.empty) {
-                    console.log('No matching documents.')
-                    return false
-                }
-                const list = []
-                snapshot.forEach(doc => {
-                    list[doc.id] = doc.data().balance
-                })
-                const sum = list['comdirect'] + list['stripe'] - list['debt']
-                return sum
-            })
-            .then(data => {
-                if (data >= 0) {
-                    document.getElementById("info").classList.add("positive");
-                }
-                const modifiedNumber = data.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
-                document.getElementById("saldo").innerHTML = modifiedNumber
-            })
-            .catch(err => {
-                console.error('error', err);
-                process.exit()
-            })
+        xhttp.open("GET", "../data/data.json", true);
+        xhttp.send();
+
+        const sum = list['comdirect'] + list['stripe'] - list['debt']
+        return sum
+
+        if (data >= 0) {
+            document.getElementById("info").classList.add("positive");
+        }
+        const modifiedNumber = data.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
+        // innerHTML to innerText
+        document.getElementById("saldo").innerHTML = modifiedNumber
+
     </script>
 </body>
 

@@ -36,8 +36,3 @@ async function displayCurrentBalance(bankBalance, stripeBalance, debtBalance) {
     if (sum >= 0) { document.getElementById("info").classList.add("positive") }
     document.getElementById("saldo").innerText = modifiedNumber
 }
-
-
-
-
-

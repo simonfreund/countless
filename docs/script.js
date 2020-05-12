@@ -1,5 +1,5 @@
 async function getBalances(url) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     return new Promise(function (resolve, reject) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
@@ -34,7 +34,6 @@ async function displayCurrentBalance(bankBalance, stripeBalance, debtBalance) {
     const modifiedNumber = sum.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/\-/g, "– ")
 
     if (sum >= 0) { document.getElementById("info").classList.add("positive") }
-
     document.getElementById("saldo").innerText = modifiedNumber
 }
 

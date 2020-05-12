@@ -1,5 +1,5 @@
 const fs = require('fs');
-const stripe = require('stripe')(process.env.API_KEY);
+const stripe = require('stripe')(process.env.API_KEY)
 const puppeteer = require('puppeteer')
 const dateNow = Date.now()
 

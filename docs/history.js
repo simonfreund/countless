@@ -33,7 +33,7 @@ async function displayHistory(historyData) {
     for (let [timestamp, value] of Object.entries(dataAsJSON)) {
         const secondWrapper = document.createElement('div')
         secondWrapper.className = 'flex'
-        wrapperElement.appendChild(secondWrapper)
+        wrapperElement.prepend(secondWrapper)
 
         const date = new Date(parseInt(timestamp)).toISOString()
         const day = date.substr(8, 2)

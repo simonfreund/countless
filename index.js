@@ -19,7 +19,7 @@ getStripeBalance()
 async function getBankBalance() {
     const url = 'https://www.comdirect.de/'
     const browser = await puppeteer.launch({
-        headless: true
+        headless: false
     })
     const page = await browser.newPage()
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9')
@@ -31,6 +31,11 @@ async function getBankBalance() {
 
     await page.goto(url)
     await page.waitFor(1000)
+
+    await page.waitForSelector('#uc-btn-accept-banner')
+    const buttonCookie = await page.$('#uc-btn-accept-banner')
+    if (buttonCookie) { await buttonCookie.click() }
+
     await page.waitForSelector('#llLink')
     const buttonLogin = await page.$('#llLink')
     await buttonLogin.click()

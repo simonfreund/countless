@@ -58,7 +58,7 @@ async function displayHistory(historyData) {
         secondWrapper.appendChild(newDivSum)
         const newContentSum = document.createTextNode(modifiedNumber + ' EUR')
         newDivSum.appendChild(newContentSum)
-        newDivSum.classList.add('width')
+        newDivSum.classList.add('value')
 
         if (sum > 0) {
             newDivSum.classList.add('positive')

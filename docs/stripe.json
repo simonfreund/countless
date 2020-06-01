@@ -1,1 +1,1 @@
-{"object":"balance","available":[{"amount":2340,"currency":"eur","source_types":{"card":2340}}],"livemode":true,"pending":[{"amount":270,"currency":"eur","source_types":{"card":270}}],"date":1590912583338}
+{"object":"balance","available":[{"amount":0,"currency":"eur","source_types":{"card":0}}],"livemode":true,"pending":[{"amount":270,"currency":"eur","source_types":{"card":270}}],"date":1590998989799}

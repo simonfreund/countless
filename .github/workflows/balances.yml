@@ -22,11 +22,11 @@ jobs:
           BANK_1: ${{ secrets.BANK_LOGIN_1 }}
           BANK_2: ${{ secrets.BANK_LOGIN_2 }}
     - run: node writeHistory.js
-    - name: Git pull
-      run: git pull
     - name: Git add
       run: git add docs/bank.json docs/stripe.json docs/history.json
     - name: Git commit
       run: git commit -m "update 💰"
+    - name: Git fetch
+      run: git fetch
     - name: Git push
       run: git push

@@ -5,6 +5,7 @@ const dateNow = Date.now()
 
 async function getStripeBalance() {
     await stripe.balance.retrieve((err, balance) => {
+        console.log('stripe', balance);
         if (err) { return false }
         balance.date = dateNow
         fs.writeFile('docs/stripe.json', JSON.stringify(balance), 'utf8', (err) => {
@@ -32,7 +33,6 @@ async function getBankBalance() {
     await page.goto(url)
     await page.waitFor(2000)
 
-    // await page.waitForSelector('#uc-btn-accept-banner')
     const buttonCookie = await page.$('#uc-btn-accept-banner')
     if (buttonCookie) { await buttonCookie.click() }
 

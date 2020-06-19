@@ -30,9 +30,9 @@ async function getBankBalance() {
     })
 
     await page.goto(url)
-    await page.waitFor(1000)
+    await page.waitFor(2000)
 
-    await page.waitForSelector('#uc-btn-accept-banner')
+    // await page.waitForSelector('#uc-btn-accept-banner')
     const buttonCookie = await page.$('#uc-btn-accept-banner')
     if (buttonCookie) { await buttonCookie.click() }
 

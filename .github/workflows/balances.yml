@@ -24,6 +24,10 @@ jobs:
     - run: node writeHistory.js
     - name: Git add
       run: git add docs/bank.json docs/stripe.json docs/history.json
+    - name: Git useremail
+      run: git config --global user.email "${{ secrets.EMAIL }}"
+    - name: Git username
+      run: git config --global user.name "${{ secrets.USER }}"
     - name: Git commit
       run: git commit -m "update 💰"
     - name: Git fetch

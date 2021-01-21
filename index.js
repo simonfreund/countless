@@ -1,6 +1,8 @@
 const fs = require('fs');
 const stripe = require('stripe')(process.env.API_KEY)
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
 const dateNow = Date.now()
 
 async function getStripeBalance() {
@@ -33,7 +35,19 @@ async function getBankBalance() {
     await page.goto(url)
     await page.waitFor(2000)
 
-    const buttonCookie = await page.$('#uc-btn-accept-banner')
+    let buttonCookie = ''
+
+    const buttonCookie1 = await page.$('#uc-btn-accept-banner')
+    const buttonCookie2 = await page.$('#privacy-init-wall-button-accept')
+
+    if (buttonCookie1) {
+        buttonCookie = buttonCookie1
+    }
+
+    if (buttonCookie2) {
+        buttonCookie = buttonCookie2
+    }
+    
     if (buttonCookie) { await buttonCookie.click() }
 
     await page.waitForSelector('#llLink')

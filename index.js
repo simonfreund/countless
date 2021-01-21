@@ -20,7 +20,7 @@ async function getStripeBalance() {
 getStripeBalance()
 
 async function getBankBalance() {
-    const url = 'https://www.comdirect.de/'
+    const url = 'https://kunde.comdirect.de/lp/wt/login?execution=e2s1'
     const browser = await puppeteer.launch({
         headless: false
     })
@@ -49,10 +49,6 @@ async function getBankBalance() {
     }
     
     if (buttonCookie) { await buttonCookie.click() }
-
-    await page.waitForSelector('#llLink')
-    const buttonLogin = await page.$('#llLink')
-    await buttonLogin.click()
 
     await page.waitForSelector('#param1Input')
     await page.waitFor(1000)

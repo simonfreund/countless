@@ -25,12 +25,6 @@ async function getBankBalance() {
         headless: false
     })
     const page = await browser.newPage()
-    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9')
-    await page.setViewport({
-        width: 1280,
-        height: 780,
-        deviceScaleFactor: 1,
-    })
 
     await page.goto(url)
     await page.waitFor(2000)
@@ -50,7 +44,6 @@ async function getBankBalance() {
     
     if (buttonCookie) { await buttonCookie.click() }
 
-    await page.waitForSelector('#param1Input')
     await page.waitFor(1000)
     await page.type('#param1Input', process.env.BANK_1)
     await page.waitFor(1000)
